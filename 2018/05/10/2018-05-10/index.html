@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="前端成长之路">
 <meta property="og:description" content="新建Promise实例时传入的函数的参数与回调函数的关系 部分内容引用自阮一峰-Promise  新建一个Promise实例：123456789const promise = new Promise(function(resolve, reject) &amp;#123;  // ... some code  if (/* 异步操作成功 */)&amp;#123;    resolve(value);  &amp;#12">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-12T07:43:21.250Z">
+<meta property="og:updated_time" content="2019-03-12T13:42:34.714Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="对Promise的理解">
 <meta name="twitter:description" content="新建Promise实例时传入的函数的参数与回调函数的关系 部分内容引用自阮一峰-Promise  新建一个Promise实例：123456789const promise = new Promise(function(resolve, reject) &amp;#123;  // ... some code  if (/* 异步操作成功 */)&amp;#123;    resolve(value);  &amp;#12">
@@ -397,12 +397,13 @@ return new Promise.reject(new Error(&apos;发生了错误&apos;))
 <blockquote>
 <p>理解透彻这个 <a href="https://juejin.im/post/5b191d585188257d831e338e" target="_blank" rel="noopener">async await、Promise、setTimeout执行顺序</a></p>
 </blockquote>
-<p>在<code>async</code>函数内部，我们可以认为 当 <code>await</code> 某个 <code>Promise</code> 时，函数暂停执行，直至该 <code>Promise</code> 产生结果，并且暂停并不会阻塞主线程，也就是会继续执行 <code>async</code> 函数外的逻辑。</p>
+<p>1.在<code>async</code>函数内部，我们可以认为 当 <code>await</code> 某个 <code>Promise</code> 时，函数暂停执行，直至该 <code>Promise</code> 产生结果，并且暂停并不会阻塞主线程，也就是会继续执行 <code>async</code> 函数外的逻辑。</p>
 <p>利用await的这种特性可以做延时，如下：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> xx = <span class="number">1234</span>;</span><br><span class="line">  <span class="keyword">await</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve</span>) =&gt;</span> &#123;</span><br><span class="line">    setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      resolve();</span><br><span class="line">    &#125;, <span class="number">2000</span>);</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 然后再执行需要延时后再处理的逻辑</span></span><br><span class="line">  xx = <span class="number">5678</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>上面代码中<code>xx = 5678</code>是在<code>2</code>秒延时后再执行的。</p>
 <blockquote>
 <p><code>await</code> 中的 <code>promise</code> 如果没有执行 <code>resolve</code> 或者 <code>reject</code>，则 <code>await</code> 后面的逻辑永远不会执行到。如下：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> xx = <span class="number">1234</span>;</span><br><span class="line">  <span class="keyword">await</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve</span>) =&gt;</span> &#123;</span><br><span class="line">    setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="comment">// resolve();</span></span><br><span class="line">    &#125;, <span class="number">2000</span>);</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 下面的逻辑永远执行不到</span></span><br><span class="line">  xx = <span class="number">5678</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 </blockquote>
+<p>2.当一个 <code>async</code> 函数被调用，它返回一个 <code>Promise</code>。当 <code>async</code> 函数返回一个值，它不是一个 <code>Promise</code>，<code>Promise</code> 将会被自动创建，然后它使用函数的返回值来决定状态。当 <code>async</code> 抛出一个异常，<code>Promise</code> 使用抛出的值进入已失败状态。</p>
 
       
     </div>
@@ -536,7 +537,7 @@ return new Promise.reject(new Error(&apos;发生了错误&apos;))
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -558,7 +559,7 @@ return new Promise.reject(new Error(&apos;发生了错误&apos;))
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
