@@ -79,21 +79,21 @@
 
 
 
-<meta name="description" content="正则表达式文档-MDN    对全局匹配来说，str的match方法返回所有匹配的值组成的数组（如果match不到匹配的，返回null）， 而 reg的exec方法一次只返回一个匹配的值    但是match在reg为全局匹配时，无法获取捕获组的值， exec可以获取。    判断输入框里是否有除数字以外的字符时，因为输入框里的value可能是这种格式&amp;#39;123a&amp;#39;、&amp;#39;12">
+<meta name="description" content="正则表达式文档-MDN    对全局匹配来说，str的match方法返回所有匹配的值组成的数组（如果match不到匹配的，返回null）， 而 reg的exec方法一次只返回一个匹配的值。 参考文档：正则里exec跟match的区别    但是match在reg为全局匹配时，无法获取捕获组的值， exec可以获取。      判断输入框里是否有除数字以外的字符时，因为输入框里的value可能是这">
 <meta name="keywords" content="正则">
 <meta property="og:type" content="article">
 <meta property="og:title" content="正则表达式随笔">
 <meta property="og:url" content="https://wscops.github.io/2018/05/23/2018-05-23/index.html">
 <meta property="og:site_name" content="前端成长之路">
-<meta property="og:description" content="正则表达式文档-MDN    对全局匹配来说，str的match方法返回所有匹配的值组成的数组（如果match不到匹配的，返回null）， 而 reg的exec方法一次只返回一个匹配的值    但是match在reg为全局匹配时，无法获取捕获组的值， exec可以获取。    判断输入框里是否有除数字以外的字符时，因为输入框里的value可能是这种格式&amp;#39;123a&amp;#39;、&amp;#39;12">
+<meta property="og:description" content="正则表达式文档-MDN    对全局匹配来说，str的match方法返回所有匹配的值组成的数组（如果match不到匹配的，返回null）， 而 reg的exec方法一次只返回一个匹配的值。 参考文档：正则里exec跟match的区别    但是match在reg为全局匹配时，无法获取捕获组的值， exec可以获取。      判断输入框里是否有除数字以外的字符时，因为输入框里的value可能是这">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://wscops.github.io/2018/05/23/2018-05-23/3.png">
 <meta property="og:image" content="https://wscops.github.io/2018/05/23/2018-05-23/1.png">
 <meta property="og:image" content="https://wscops.github.io/2018/05/23/2018-05-23/2.png">
-<meta property="og:updated_time" content="2019-02-20T07:18:31.842Z">
+<meta property="og:updated_time" content="2020-02-16T13:02:15.365Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="正则表达式随笔">
-<meta name="twitter:description" content="正则表达式文档-MDN    对全局匹配来说，str的match方法返回所有匹配的值组成的数组（如果match不到匹配的，返回null）， 而 reg的exec方法一次只返回一个匹配的值    但是match在reg为全局匹配时，无法获取捕获组的值， exec可以获取。    判断输入框里是否有除数字以外的字符时，因为输入框里的value可能是这种格式&amp;#39;123a&amp;#39;、&amp;#39;12">
+<meta name="twitter:description" content="正则表达式文档-MDN    对全局匹配来说，str的match方法返回所有匹配的值组成的数组（如果match不到匹配的，返回null）， 而 reg的exec方法一次只返回一个匹配的值。 参考文档：正则里exec跟match的区别    但是match在reg为全局匹配时，无法获取捕获组的值， exec可以获取。      判断输入框里是否有除数字以外的字符时，因为输入框里的value可能是这">
 <meta name="twitter:image" content="https://wscops.github.io/2018/05/23/2018-05-23/3.png">
 
 
@@ -375,16 +375,18 @@
 <li><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Regular_Expressions" target="_blank" rel="noopener">正则表达式文档-MDN</a></p>
  <img src="/2018/05/23/2018-05-23/3.png">
 </li>
-<li><p>对全局匹配来说，<code>str</code>的<code>match</code>方法返回所有匹配的值组成的数组（如果<code>match</code>不到匹配的，返回<code>null</code>）， 而 <code>reg</code>的<code>exec</code>方法一次只返回一个匹配的值</p>
+<li><p>对全局匹配来说，<code>str</code>的<code>match</code>方法返回所有匹配的值组成的数组（如果<code>match</code>不到匹配的，返回<code>null</code>）， 而 <code>reg</code>的<code>exec</code>方法一次只返回一个匹配的值。 参考文档：<a href="https://imweb.io/topic/5960793b98670dff5cff8578" target="_blank" rel="noopener">正则里exec跟match的区别</a></p>
  <img src="/2018/05/23/2018-05-23/1.png">
 <p> 但是<code>match</code>在<code>reg</code>为全局匹配时，无法获取捕获组的值， <code>exec</code>可以获取。</p>
  <img src="/2018/05/23/2018-05-23/2.png">
 </li>
+</ol>
+<ol start="3">
 <li><p>判断输入框里是否有除数字以外的字符时，因为输入框里的<code>value</code>可能是这种格式<code>&#39;123a&#39;</code>、<code>&#39;123&#39;’</code>、<code>123</code>、<code>&#39;a123&#39;</code>,用<code>Number</code>和<code>parseInt</code>需要考虑的情况比较多，用正则表达式来判断比较简单。</p>
 <pre><code>const reg = /\D/
 </code></pre><p> 上述<code>reg</code>表示除数字外的任意字符, 注意正则表达式后面不要加 <code>g</code>, 因为<code>exec</code>的全局匹配不是真正的全局匹配，比如 <code>/\d/g.exec(&#39;1abc23d5&#39;)</code> 会首先返回 <code>1</code>，运行第二次返回 <code>2</code>，依次检索到最后一个并返回<code>5</code>，这个时候 再次运行就会返回<code>null</code>,而如果不加<code>g</code>的话，就会一直返回匹配的第一个，这样只要有匹配的就会把匹配的第一个值返回，而不会出现返回<code>null</code> 的情况</p>
 <pre><code>reg.test(value)
-</code></pre><p> 不管value是字符串类型还是数字类型，只要其中含有除数字以外的字符，就返回true,上述方法相当于  </p>
+</code></pre><p> 不管value是字符串类型还是数字类型，只要其中含有除数字以外的字符，就返回true,上述方法相当于</p>
 <pre><code>reg.exec(value) !== null
 </code></pre></li>
 <li><p>从一个字符串中取出某一部分有以下几种方法。<br> 假设有一个字符串<code>str</code>, 要取出中括号中的内容,并将其拼接在一起：</p>
@@ -393,7 +395,7 @@
  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> result = str.replace(<span class="regexp">/【(.*)】.*【(.*)】/</span>, <span class="string">'$2：$1'</span>); <span class="comment">// "名字：哈哈"</span></span><br></pre></td></tr></table></figure>
 <p> 方法2：</p>
  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> reg = <span class="regexp">/【(.*)】.*【(.*)】/</span>;</span><br><span class="line"><span class="keyword">const</span> matchs = str.match(reg); <span class="comment">// ["【哈哈】随便几个字【名字】", "哈哈", "名字"]</span></span><br><span class="line"><span class="keyword">const</span> result = <span class="string">`<span class="subst">$&#123;matchs[<span class="number">2</span>]&#125;</span>: <span class="subst">$&#123;matchs[<span class="number">1</span>]&#125;</span>`</span>;  <span class="comment">// "名字：哈哈"</span></span><br></pre></td></tr></table></figure>
-<p> 方法3： </p>
+<p> 方法3：</p>
  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> reg = <span class="regexp">/【(.*)】.*【(.*)】/</span>;</span><br><span class="line"><span class="keyword">const</span> matchs = reg.exec(str); <span class="comment">// ["【哈哈】随便几个字【名字】", "哈哈", "名字"]</span></span><br><span class="line"><span class="keyword">const</span> result = <span class="string">`<span class="subst">$&#123;matchs[<span class="number">2</span>]&#125;</span>: <span class="subst">$&#123;matchs[<span class="number">1</span>]&#125;</span>`</span>;  <span class="comment">// "名字：哈哈"</span></span><br></pre></td></tr></table></figure>
 <p> <strong>这里要注意，对于汉字,匹配的时候不能使用\w,因为\w只匹配字母数字和下划线</strong></p>
 </li>
@@ -579,7 +581,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
